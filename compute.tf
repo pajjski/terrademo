@@ -33,7 +33,6 @@ resource "oci_core_instance" "compute_instance" {
         source_id = var.image_ocid
         source_type = "image"
         instance_source_image_filter_details {
-            #Required
             compartment_id = var.image_compartment
         }
     }
@@ -41,4 +40,7 @@ resource "oci_core_instance" "compute_instance" {
         assign_public_ip = true
         subnet_id = oci_core_subnet.publicsubnet.id
     }
+}
+data "oci_core_public_ip" "public_ip" {
+    ip_address = oci_core_instance.compute_instance.public_ip
 }
