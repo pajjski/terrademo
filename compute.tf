@@ -14,7 +14,7 @@ variable image_ocid {
     description = "ocid of the image you want to run"
 
 }
-variable image_compartment {
+variable image_compartment_ocid {
     type = string
     default = "ocid1.compartment.oc1..aaaaaaaaff75tp2hk7vj4ixhlrf5ovqgzywpzjzfiiq2ssdvuwb2zhammbdq"
     description = "Which compartment the images is stored in"
@@ -33,7 +33,7 @@ resource "oci_core_instance" "compute_instance" {
         source_id = var.image_ocid
         source_type = "image"
         instance_source_image_filter_details {
-            compartment_id = var.image_compartment
+            compartment_id = var.image_compartment_ocid
         }
     }
     create_vnic_details {
